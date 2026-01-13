@@ -1,0 +1,15 @@
+version: '3'
+services:
+  dummy-service:
+    build: ./dummy-service
+    container_name: demo-dummy
+    ports:
+      - "8081:8081"
+
+  gateway-service:
+    build: ./gateway-service
+    container_name: demo-gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - dummy-service
