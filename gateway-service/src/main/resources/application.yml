@@ -6,9 +6,9 @@ spring:
     gateway:
       routes:
         - id: protected-route
-          uri: http://dummy-service:8081  # Forward to dummy service
+          uri: http://dummy-service:8081
           predicates:
-            - Path=/api/data             # Match this URL
+            - Path=/api/data
           filters:
-            - RewritePath=/api/(?<segment>.*), /$\{segment} # Strip /api prefix
-            - name: AuthFilter     # Apply our Security Filter
+            - RewritePath=/api/(?<segment>.*), /$\{segment}
+            - name: AuthFilter
