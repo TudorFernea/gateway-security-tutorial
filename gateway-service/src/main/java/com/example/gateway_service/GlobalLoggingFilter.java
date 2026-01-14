@@ -26,7 +26,6 @@ public class GlobalLoggingFilter implements GlobalFilter, Ordered {
         logger.info("[AUDIT] Incoming Request: {} {} | IP: {} | Key: {}",
                 method, path, ip, (apiKey != null ? apiKey : "None"));
 
-        // 2. Continue the chain and capture the response code AFTER
         return chain.filter(exchange).then(Mono.fromRunnable(() -> {
             logger.info("✅ [AUDIT] Response Code: {}", exchange.getResponse().getStatusCode());
         }));
@@ -34,6 +33,6 @@ public class GlobalLoggingFilter implements GlobalFilter, Ordered {
 
     @Override
     public int getOrder() {
-        return -1; // Runs before everything else
+        return -1;
     }
 }
